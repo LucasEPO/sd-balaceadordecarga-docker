@@ -3,32 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<form id="simpleForm" method="post" action="http://localhost:9093/bc">
-		<label for="numero1">Entrada A:</label>
-		<input type="number" id="a" name="a" required>
+	<form id="simpleForm" method="post">
+		<div class="input-group">
+			<!-- INPUTS INSPIRADOS PELO DESIGN DÍSPONIVEL EM https://codepen.io/lucasyem/pen/ZEEYKdj CRÉDITOS NO SITE -->
+			<div class="form__group field">
+				<input type="number" class="form__field" placeholder="A" name="inputA" id='a' required />
+				<label for="inputA" class="form__label">A</label>
+			</div>
+			<div class="form__group field">
+				<input type="number" class="form__field" placeholder="B" name="inputB" id='b' required />
+				<label for="inputB" class="form__label">B</label>
+			</div>
+		</div>
 	
-		<label for="numero2">Entrada B:</label>
-		<input type="number" id="b" name="b" required>
-	
-		<button type="submit">Enviar</button>
+		<!-- BOTÃO INSIPIADO PELO DESIGN DISPONÍVEL EM https://getcssscan.com/css-buttons-examples (BOTÃO 85) CRÉDITOS NO SITE -->
+		<button type="button" class="button" onclick="submitForm()">Enviar</button>
 	</form>
 
-	<button id="getDataButton">Ver Dados</button>
-	<div id="dataContainer"></div>
+	<div class="data-list">
+		<button id="getDataButton" onclick="toggleDataVisibility()">Ver Dados</button>
+		<div id="dataContainer"></div>
+	</div>
 
-	<script>
-        document.getElementById('getDataButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('http://localhost:9093/bc');
-                const data = await response.json();
-
-                document.getElementById('dataContainer').innerText = JSON.stringify(data, null, 2);
-            } catch (error) {
-                console.error('Erro ao obter dados:', error);
-            }
-        });
-    </script>
+	<script src="./index.js"> </script>
 </body>
 </html>

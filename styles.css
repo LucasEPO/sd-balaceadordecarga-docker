@@ -1,0 +1,299 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+    height: 100vh; 
+    width: 100vw;
+    max-width: 100vw;
+    gap: 15px;
+    margin: 0;
+    background: radial-gradient(ellipse at top, #2e2e2e , #000);
+    padding: 2%;
+    font-family: 'Poppins', sans-serif; 
+}
+
+form {
+    width:100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --background-size: unquote('min(100vw, 40em)');
+}
+
+html {
+    font-size: calc(100% + 0.5vw);
+}
+
+/* BOTÃO INSPIRADO PELO DESIGN DÍSPONIVEL EM https://getcssscan.com/css-buttons-examples (botão 85) */
+/* CSS */
+.button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+/* FIM BOTÃO */
+
+/* INPUTS INSPIRADOS PELO DESIGN DESPONÍVEL EM https://codepen.io/lucasyem/pen/ZEEYKdj */
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 70px;
+}
+
+.data-list {
+    grid-column: 2;
+    width: 50%;
+}
+
+/* Variáveis */
+:root {
+    --primary: #cc5c01;
+    --secondary: #e97f28;
+    --white: #fff;
+    --gray: #9b9b9b;
+}
+  
+/* .form__group */
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    width: 50%;
+    margin-bottom: 15px;
+}
+  
+/* .form__field */
+.form__field {
+    font-family: inherit;
+    width: 140px;
+    border: 0;
+    border-bottom: 2px solid var(--gray);
+    outline: 0;
+    font-size: 3rem;
+    color: var(--white);
+    background: transparent;
+    transition: border-color 0.2s;
+}
+  
+.form__field::placeholder {
+    color: transparent;
+}
+  
+.form__field:placeholder-shown ~ .form__label {
+    font-size: 3rem;
+    cursor: text;
+    top: 20px;
+}
+  
+/* .form__label */
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: var(--gray);
+}
+  
+.form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 700;    
+    padding-bottom: 6px;  
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--primary), var(--secondary));
+    border-image-slice: 1;
+}
+  
+/* Reset input */
+.form__field:required, .form__field:invalid {
+    box-shadow: none;
+}
+/* fim inputs */
+
+/* BOTÃO DE GET E TABELAS */
+#getDataButton {
+    z-index: 1;
+    background-color: #cc5c01;
+    color: #fff; 
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none; 
+    border-radius: 10px;
+    position: absolute;
+    top: calc(50% - 15px);
+    padding: 15px;
+}
+  
+#getDataButton:focus {
+    outline: none;
+} 
+  
+#getDataButton:hover {
+    cursor: pointer; 
+}
+
+#getDataButton.clicked {
+    top: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    width: 55%;
+    padding-inline: 100px;
+}
+
+#dataTable {
+    width: 100%;
+    height: 100%;
+    display: none; 
+    margin-left: 15%;
+}
+
+#dataContainer.clicked #dataTable {
+    display: block; 
+    overflow: auto;
+}
+
+#dataContainer::-webkit-scrollbar {
+    width: 0;  
+    height: 0; 
+}
+
+td, th, table {
+    color: #fff;
+}
+
+#dataTable thead {
+    position: sticky;
+    z-index: 1; 
+    background-color: #cc5c01;
+}
+#dataContainer th:first-child {
+    border-top-left-radius: 10px;
+}
+
+#dataContainer th:last-child {
+    border-top-right-radius: 10px;
+}
+
+#dataTable tbody tr:nth-child(odd) {
+    background-color: #202020; 
+}
+
+/* CSS para linhas pares */
+#dataTable tbody tr:nth-child(even) {
+    background-color: #5e5e5e; 
+}
+
+#dataTable tbody tr td {
+    padding: 5px; 
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.data-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#dataContainer {
+    font-size: 0.75em;
+    width: 100%;
+    height: calc(100% - 60px); 
+    max-height: calc(100% - 60px); 
+    position: relative;
+    border: none;
+    overflow-y: auto;
+    top: 60px; 
+}
+
+#dataContainer::-webkit-scrollbar {
+    width: 0;  
+}
+
+#dataContainer::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+}
+
